@@ -1,12 +1,11 @@
-const fs = require("fs");
+const fs = require('fs');
 const readline = require('readline');
 const stream = require('stream');
-
 
 const args = process.argv.slice(2);
 
 if (args.length !== 1) {
-  console.error("usage: extractlinks inputfile");
+  console.error('usage: extractlinks inputfile');
   process.exit(1);
 }
 
@@ -20,20 +19,11 @@ const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-
 let lineNumber = 0;
 rl.on('line', (line) => {
   if (line.match(url)) {
-    lineNumber++;
+    lineNumber += 1;
     console.log(`${lineNumber}: ${line.match(url)[0]}`);
   }
 });
 
-rl.on('close', function() {
+rl.on('close', () => {
   console.log(`Done there are ${lineNumber} links on the page.`);
 });
-// !!!! IMPLEMENT ME
-
-// Read file
-
-// Set up regex
-
-// Find matches
-
-// Print all matches
